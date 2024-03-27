@@ -1,22 +1,22 @@
 <div id="<%= dom_id club %>">
   <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
+    <strong class="block font-medium mb-1">Nom :</strong>
     <%= club.name %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">City:</strong>
-    <%= club.city %>
+    <strong class="block font-medium mb-1">Adresse :</strong>
+    <%= club.address %>
   </p>
 
   <p class="my-5">
-    <strong class="block font-medium mb-1">Description:</strong>
+    <strong class="block font-medium mb-1">Description :</strong>
     <%= club.description %>
   </p>
 
   <% if action_name != "show" %>
-    <%= link_to "Show this club", club, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this club", edit_club_path(club), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Voir ce club", club, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Modifier ce club", edit_club_path(club), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
     <hr class="mt-6">
   <% end %>
 </div>

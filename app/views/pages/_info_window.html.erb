@@ -1,0 +1,7 @@
+<div class="p-4 overflow-y-scroll">
+  <%= link_to club_path(club), class: "text-white" do %>
+    <h2 class="text-xl font-semibold mb-2"><%= club.name %></h2>
+    <p class="text-gray-300"><%= club.address %></p>
+  <% end %>
+  <a href="<%= "https://www.google.com/maps/search/?api=1&query=#{club.latitude},#{club.longitude}" %>" class="block text-blue-500 mt-2" target="_blank">Voir sur Google Maps</a>
+</div>

@@ -1,11 +1,12 @@
 class PagesController < ApplicationController
   def home
-    @clubs = Club.all
-    # The `geocoded` scope filters only flats with coordinates
-    @markers = @clubs.geocoded.map do |club|
+    @clubs = Club.geocoded
+    @markers = @clubs.map do |club|
       {
         lat: club.latitude,
-        lng: club.longitude
+        lng: club.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {club: club}),
+        marker_html: render_to_string(partial: "marker")
       }
     end
   end
