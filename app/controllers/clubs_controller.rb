@@ -1,9 +1,23 @@
 class ClubsController < ApplicationController
   before_action :set_club, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[ show index ]
 
   # GET /clubs or /clubs.json
   def index
     @clubs = Club.all
+
+    @clubs_with_region = Club.all.map do |club|
+      location = Geocoder.search([club.latitude, club.longitude]).first
+      if location.present? && location.data["address"].present?
+        region_code = location.data["address"]["ISO3166-2-lvl6"] || location.data["address"]["ISO3166-2-lvl6"]
+        region_code_digits = region_code.scan(/\d/).join
+        { club: club, region_code: region_code_digits }
+      end
+    end.compact
+
+    # Trie les clubs par code de région
+    @sorted_clubs = @clubs_with_region.sort_by { |club_info| club_info[:region_code] }
+
   end
 
   # GET /clubs/1 or /clubs/1.json
