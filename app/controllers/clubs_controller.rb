@@ -17,7 +17,6 @@ class ClubsController < ApplicationController
 
     # Trie les clubs par code de région
     @sorted_clubs = @clubs_with_region.sort_by { |club_info| club_info[:region_code] }
-
   end
 
   # GET /clubs/1 or /clubs/1.json
@@ -26,7 +25,7 @@ class ClubsController < ApplicationController
 
   # GET /clubs/new
   def new
-    @club = Club.new
+    @club = current_user.created_clubs.build
   end
 
   # GET /clubs/1/edit
@@ -35,7 +34,7 @@ class ClubsController < ApplicationController
 
   # POST /clubs or /clubs.json
   def create
-    @club = Club.new(club_params)
+    @club = current_user.created_clubs.build(club_params)
 
     respond_to do |format|
       if @club.save

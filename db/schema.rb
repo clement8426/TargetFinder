@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_28_140205) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_29_165733) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "club_edits", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "club_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["club_id"], name: "index_club_edits_on_club_id"
+    t.index ["user_id"], name: "index_club_edits_on_user_id"
+  end
 
   create_table "clubs", force: :cascade do |t|
     t.string "name"
@@ -23,6 +32,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_140205) do
     t.float "latitude"
     t.float "longitude"
     t.string "address"
+    t.integer "creator_id"
+    t.index ["creator_id"], name: "index_clubs_on_creator_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,8 +44,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_28_140205) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "club_edits", "clubs"
+  add_foreign_key "club_edits", "users"
 end
