@@ -21,6 +21,7 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1 or /clubs/1.json
   def show
+
   end
 
   # GET /clubs/new
@@ -51,6 +52,9 @@ class ClubsController < ApplicationController
   def update
     respond_to do |format|
       if @club.update(club_params)
+        # Ajouter l'utilisateur actuel en tant qu'éditeur du club
+        @club.editors << current_user unless @club.editors.include?(current_user)
+
         format.html { redirect_to club_url(@club), notice: "Le club a été mis à jour avec succès." }
         format.json { render :show, status: :ok, location: @club }
       else

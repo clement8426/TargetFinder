@@ -7,4 +7,6 @@ class User < ApplicationRecord
   has_many :created_clubs, class_name: "Club", foreign_key: "creator_id"
   has_many :club_edits
   has_many :edited_clubs, through: :club_edits, source: :club
+  has_many :comments, dependent: :destroy
+
 end

@@ -8,6 +8,8 @@ class Club < ApplicationRecord
   belongs_to :creator, class_name: "User", foreign_key: "creator_id"
   has_many :club_edits
   has_many :editors, through: :club_edits, source: :user
+  has_many :comments, dependent: :destroy
+
 
   private
 
