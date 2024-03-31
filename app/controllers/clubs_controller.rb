@@ -21,8 +21,11 @@ class ClubsController < ApplicationController
 
   # GET /clubs/1 or /clubs/1.json
   def show
+    @club = Club.find(params[:id]) # Récupère le club spécifique
+    @comments = @club.comments # Récupère les commentaires associés à ce club
 
   end
+
 
   # GET /clubs/new
   def new
