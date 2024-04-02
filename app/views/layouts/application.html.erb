@@ -14,11 +14,10 @@
   <body>
     <main >
       <div class="h-full flex">
-
-      <%= render "shared/navbar" %>
-      <div id="div_yeild" class="w-screen" >
-        <%= yield %>
-      </div>
+        <%= render "shared/navbar" %>
+        <div id="div_yeild" class="w-screen relative z-0">
+          <%= yield %>
+        </div>
       </div>
     </main>
 
