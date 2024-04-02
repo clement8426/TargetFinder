@@ -45,3 +45,14 @@
   right: 5px;
   top: -1px;
 }
+
+
+#div_yeild {
+  margin-left: 16rem;
+}
+
+@media (max-width: 767px) {
+  #div_yeild {
+    margin-left: 0;
+  }
+}
