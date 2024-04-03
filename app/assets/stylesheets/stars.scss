@@ -9,7 +9,7 @@
 }
 
 .rating-star:checked + .rating-star-label svg path {
-  color: yellow; /* Couleur de remplissage pour les étoiles sélectionnées */
+  color: #FFB000; /* Couleur de remplissage pour les étoiles sélectionnées */
 }
 
 .rating-star-label svg path {
@@ -17,9 +17,9 @@
 }
 
 .rating-star-label.selected svg path {
-  color: yellow; /* Couleur des étoiles sélectionnées */
+  color: #FFB000; /* Couleur des étoiles sélectionnées */
 }
 
 .rating-star-label.validated svg path {
-  color: yellow; /* Couleur des étoiles validées */
+  color: #FFB000; /* Couleur des étoiles validées */
 }
