@@ -1,0 +1,25 @@
+
+.rating-star {
+  display: none; /* Masquer les boutons radio */
+}
+
+.rating-star + .rating-star-label {
+  cursor: pointer;
+  margin-right: 5px; /* Espace entre les étoiles */
+}
+
+.rating-star:checked + .rating-star-label svg path {
+  color: yellow; /* Couleur de remplissage pour les étoiles sélectionnées */
+}
+
+.rating-star-label svg path {
+  color: gray; /* Couleur par défaut des étoiles */
+}
+
+.rating-star-label.selected svg path {
+  color: yellow; /* Couleur des étoiles sélectionnées */
+}
+
+.rating-star-label.validated svg path {
+  color: yellow; /* Couleur des étoiles validées */
+}

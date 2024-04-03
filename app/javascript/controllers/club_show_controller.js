@@ -6,7 +6,7 @@ export default class extends Controller {
     const stars = this.element.querySelectorAll(".rating-star-label");
 
     stars.forEach((star, index) => {
-      star.addEventListener("mouseover", function() {
+      star.addEventListener("click", function() {
         stars.forEach((s, i) => {
           if (i <= index) {
             s.classList.add("selected");

@@ -77,4 +77,6 @@ gem "devise", "~> 4.9"
 
 gem "geocoder"
 
-gem 'env'
+gem "dotenv-rails"
+
+gem "cloudinary"

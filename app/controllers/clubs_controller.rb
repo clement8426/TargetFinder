@@ -17,6 +17,7 @@ class ClubsController < ApplicationController
 
     # Trie les clubs par code de région
     @sorted_clubs = @clubs_with_region.sort_by { |club_info| club_info[:region_code] }
+
   end
 
   # GET /clubs/1 or /clubs/1.json
@@ -38,7 +39,8 @@ class ClubsController < ApplicationController
 
   # POST /clubs or /clubs.json
   def create
-    @club = current_user.created_clubs.build(club_params)
+    @club = Club.new(club_params)
+    @club.creator = current_user # Définir le créateur comme l'utilisateur actuel
 
     respond_to do |format|
       if @club.save
@@ -51,12 +53,16 @@ class ClubsController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /clubs/1 or /clubs/1.json
   def update
     respond_to do |format|
       if @club.update(club_params)
-        # Ajouter l'utilisateur actuel en tant qu'éditeur du club
-        @club.editors << current_user unless @club.editors.include?(current_user)
+        # Vérifier si l'utilisateur actuel n'est pas déjà un éditeur du club
+        unless @club.editors.include?(current_user)
+          # Ajouter l'utilisateur actuel à la liste des éditeurs du club
+          @club.editors << current_user
+        end
 
         format.html { redirect_to club_url(@club), notice: "Le club a été mis à jour avec succès." }
         format.json { render :show, status: :ok, location: @club }
@@ -66,6 +72,7 @@ class ClubsController < ApplicationController
       end
     end
   end
+
 
   # DELETE /clubs/1 or /clubs/1.json
   def destroy
@@ -85,6 +92,6 @@ class ClubsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def club_params
-      params.require(:club).permit(:name, :city, :description, :address)
+      params.require(:club).permit(:name, :city, :description, :address, :photo)
     end
 end
