@@ -1,4 +1,4 @@
-<div class="mx-auto md:w-2/3 w-full flex" >
+<div class="mx-auto md:w-2/3 w-full flex" data-controller="club-show" >
   <div class="mx-auto">
     <div class="max-w-2xl mx-auto py-2 mb:py-0 px-2 mb:px-0">
       <div id="default-carousel" class="relative" data-carousel="static">
@@ -56,7 +56,7 @@
       <div class="inline-block ml-2">
         <%= button_to "Supprimer ce club", club_path(@club), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
       </div>
-      <button id="toggle-comment-form" class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">Ajouter un commentaire</button>
+  <button data-action="click->club-show#toggleCommentForm" class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">Ajouter un commentaire</button>
 
       <div id="comment-form-container" class="hidden">
         <% if user_signed_in? %>
@@ -122,39 +122,3 @@
 </div>
 
 <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", function() {
-    const stars = document.querySelectorAll(".rating-star-label");
-
-    stars.forEach((star, index) => {
-      star.addEventListener("mouseover", function() {
-        stars.forEach((s, i) => {
-          if (i <= index) {
-            s.classList.add("selected");
-          } else {
-            s.classList.remove("selected");
-          }
-        });
-      });
-
-      star.addEventListener("click", function() {
-        stars.forEach((s, i) => {
-          if (i <= index) {
-            s.classList.add("validated");
-          } else {
-            s.classList.remove("validated");
-          }
-        });
-      });
-    });
-  });
-
-  document.getElementById('toggle-comment-form').addEventListener('click', function() {
-    var commentFormContainer = document.getElementById('comment-form-container');
-    if (commentFormContainer.classList.contains('hidden')) {
-      commentFormContainer.classList.remove('hidden');
-    } else {
-      commentFormContainer.classList.add('hidden');
-    }
-  });
-</script>
