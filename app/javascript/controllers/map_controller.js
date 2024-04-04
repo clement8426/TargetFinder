@@ -30,6 +30,8 @@ export default class extends Controller {
       this.map.fitBounds(this.#getExtendedBounds(), { padding: 70, maxZoom: 15, duration: 0 });
     });
 
+
+
     this.#addMarkersToMap();
   }
 
