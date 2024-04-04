@@ -21,31 +21,44 @@
     </section>
 
 
-    <div class="py-4 px-6">
-      <h3 class="text-lg font-medium text-gray-800">
+    <div class="py-4 px-6 div">
+      <h3 class="text-lg font-medium text-gray-800 flex items-center">
         <% if @club.photo.attached? %>
           <%= cl_image_tag @club.photo.key, height: 300, width: 400, crop: :fill, class: "w-12 h-12 rounded-full object-cover mr-4" %>
         <% else %>
           <img class="w-12 h-12 rounded-full object-cover mr-4" src="https://c7.alamy.com/compfr/2eawdy4/armes-a-feu-logo-quatre-votre-entreprise-2eawdy4.jpg" alt="User avatar">
         <% end %>
-        <%= @club.name %>
+        <%= @club.name.titleize %>
       </h3>
 
-      <p class="text-gray-600 text-base"><%= @club.address %></p>
-      <p class="text-gray-600 text-base"><%= @club.description %></p>
-      <h3 class="text-lg font-medium text-gray-800">Créateur : <%= @club.creator.present? ? @club.creator.name : "Inconnu" %></h3>
-      <p class="text-gray-600 text-base">Éditeurs :</p>
-      <ul>
-        <% @club.editors.each do |editor| %>
-          <li><%= editor.name %></li>
-        <% end %>
-      </ul>
 
-      <%= link_to "Modifier ce club", edit_club_path(@club), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-      <div class="inline-block ml-2">
-        <%= button_to "Supprimer ce club", club_path(@club), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <p class="mt-2 text-gray-600 text-base"><%= @club.address %></p>
+      <div class="bg-white shadow-md rounded-md p-6 mb-8">
+        <p class="text-gray-600 text-base"><%= @club.description %></p>
       </div>
-  <button data-action="click->club-show#toggleCommentForm" class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium">Ajouter un commentaire</button>
+      <div id="dropdown">
+
+<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+</svg>
+</button>
+
+<!-- Dropdown menu -->
+<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+
+      <li>
+      <%= link_to "Modifier ce club", edit_club_path(@club), class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+      </li>
+      <li>
+      <%= button_to "Supprimer ce club", club_path(@club), method: :delete, class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
+      </li>
+    </ul>
+</div>
+
+      </div>
+
+      <button data-action="click->club-show#toggleCommentForm" class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium flex justify-center">Ajouter un commentaire</button>
 
       <div id="comment-form-container" class="hidden">
         <% if user_signed_in? %>
@@ -111,6 +124,17 @@
           <h3 class="font-bold text-lg text-gray-800">Pas de Commentaires :</h3>
         <% end %>
       </div>
+      <div class="mt-4 mb-8">
+        <h3 class="text-lg font-medium text-gray-800">Credits :</h3>
+        <h4 class="font-medium text-gray-800">Créateur : <%= @club.creator.present? ? @club.creator.name : "Inconnu" %></h4>
+        <p class="text-gray-600 text-base opacity-75">Éditeurs :</p>
+        <ul class="list-disc ml-4 text-gray-600 opacity-75">
+          <% @club.editors.each do |editor| %>
+            <li><%= editor.name %></li>
+          <% end %>
+        </ul>
+      </div>
+
     </div>
   </div>
 </div>
