@@ -22,41 +22,55 @@
 
 
     <div class="py-4 px-6 div">
-      <h3 class="text-lg font-medium text-gray-800 flex items-center">
-        <% if @club.photo.attached? %>
-          <%= cl_image_tag @club.photo.key, height: 300, width: 400, crop: :fill, class: "w-12 h-12 rounded-full object-cover mr-4" %>
-        <% else %>
-          <img class="w-12 h-12 rounded-full object-cover mr-4" src="https://c7.alamy.com/compfr/2eawdy4/armes-a-feu-logo-quatre-votre-entreprise-2eawdy4.jpg" alt="User avatar">
-        <% end %>
-        <%= @club.name.titleize %>
-      </h3>
+      <div class="flex items-center justify-between relative">
+        <h3 class="text-lg font-medium text-gray-800 flex items-center">
+          <% if @club.photo.attached? %>
+            <%= cl_image_tag @club.photo.key, height: 300, width: 400, crop: :fill, class: "w-12 h-12 rounded-full object-cover mr-4" %>
+          <% else %>
+            <img class="w-12 h-12 rounded-full object-cover mr-4" src="https://c7.alamy.com/compfr/2eawdy4/armes-a-feu-logo-quatre-votre-entreprise-2eawdy4.jpg" alt="User avatar">
+          <% end %>
+          <%= @club.name.titleize %>
+        </h3>
 
+        <div id="dropdown">
+          <div data-controller="dropdown" class="relative">
+            <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="flex items-center border border-gray-200 rounded shadow-md p-1">
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-caret-down">
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path d="M6 10l6 6l6 -6h-12" />
+                </svg>
+              </span>
+              <span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-settings" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                  <path stroke="none" d="M0 0h24v24H0z" />
+                  <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <circle cx="12" cy="12" r="3" />
+                </svg>
+              </span>
+            </button>
+
+            <div
+              data-dropdown-target="menu"
+              class="absolute z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 right-0"
+              data-transition-enter-from="opacity-0 scale-95"
+              data-transition-enter-to="opacity-100 scale-100"
+              data-transition-leave-from="opacity-100 scale-100"
+              data-transition-leave-to="opacity-0 scale-95"
+              style="top: 2.5rem;"
+            >
+              <%= link_to "Modifier ce club", edit_club_path(@club), class: "block px-4 py-2 hover:bg-gray-100" %>
+              <%= button_to "Supprimer ce club", club_path(@club), method: :delete, class: "block px-4 py-2 hover:bg-gray-100" %>
+            </div>
+          </div>
+        </div>
+      </div>
 
       <p class="mt-2 text-gray-600 text-base"><%= @club.address %></p>
       <div class="bg-white shadow-md rounded-md p-6 mb-8">
         <p class="text-gray-600 text-base"><%= @club.description %></p>
       </div>
-      <div id="dropdown">
 
-<button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Dropdown button <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-<path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-</svg>
-</button>
-
-<!-- Dropdown menu -->
-<div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-
-      <li>
-      <%= link_to "Modifier ce club", edit_club_path(@club), class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
-      </li>
-      <li>
-      <%= button_to "Supprimer ce club", club_path(@club), method: :delete, class: "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" %>
-      </li>
-    </ul>
-</div>
-
-      </div>
 
       <button data-action="click->club-show#toggleCommentForm" class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium flex justify-center">Ajouter un commentaire</button>
 
