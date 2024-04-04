@@ -20,12 +20,7 @@
 @import "stars";
 
 
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-}
+
 
 .sidebar {
   transition: left 0.2s ease-out;
@@ -58,7 +53,20 @@
 
 #div_yeild {
   margin-left: 16rem;
+  position: relative;
+
+  .sticky-button {
+    position: sticky;
+    bottom: 2rem; // À ajuster selon vos besoins
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; // Assure que le bouton est devant le contenu
+  }
+
 }
+
+
+
 
 @media (max-width: 767px) {
   #div_yeild {

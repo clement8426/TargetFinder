@@ -1,4 +1,7 @@
-<div style="width: 100%; height: 100vh;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+<div class="" style="width: 100%; height: 100vh; position: relative;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>" data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+
+
+
+
+<div id="clubsList" style=" height: 800px"><%= render 'list_club' %></div>
