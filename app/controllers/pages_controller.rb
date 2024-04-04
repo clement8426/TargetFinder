@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def home
-    @clubs = Club.geocoded
+    @clubs = Club.all
     @markers = @clubs.map do |club|
       {
         lat: club.latitude,

@@ -20,7 +20,12 @@
 @import "stars";
 
 
-
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
 
 .sidebar {
   transition: left 0.2s ease-out;

@@ -26,10 +26,6 @@ export default class extends Controller {
       minZoom: 4   // Limite de zoom minimale pour afficher une zone étendue
     });
 
-    this.map.on('load', () => {
-      this.map.fitBounds(this.#getExtendedBounds(), { padding: 70, maxZoom: 15, duration: 0 });
-    });
-
 
 
     this.#addMarkersToMap();
@@ -50,7 +46,4 @@ export default class extends Controller {
   }
 
 
-  #getExtendedBounds() {
-    return [[-10.0, 38.0], [15.0, 54.0]];
-  }
 }
