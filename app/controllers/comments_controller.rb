@@ -6,10 +6,21 @@ class CommentsController < ApplicationController
     @comment = @club.comments.build(comment_params)
     @comment.user = current_user
 
-    if @comment.save
-      redirect_to @club, notice: "Commentaire ajouté avec succès."
-    else
-      redirect_to @club, alert: "Impossible d'ajouter le commentaire."
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @club, notice: "Commentaire ajouté avec succès." }
+      else
+        format.html { redirect_to @club, alert: "Impossible d'ajouter le commentaire." }
+      end
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+
+    respond_to do |format|
+      format.html { redirect_to @comment.club, notice: "Commentaire supprimé avec succès." }
     end
   end
 

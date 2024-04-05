@@ -22,4 +22,12 @@ class PagesController < ApplicationController
     @sorted_clubs = @clubs_with_region.sort_by { |club_info| club_info[:region_code] }
 
   end
+
+  def profile
+    @user = current_user
+    @current_comments = @user.comments
+    @created_clubs = Club.where(creator_id: @user.id)
+    @edited_clubs = ClubEdit.where(user_id: @user.id).map(&:club)
+
+  end
 end

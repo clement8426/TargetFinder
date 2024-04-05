@@ -1,0 +1,58 @@
+<div class="container mx-auto px-4 py-8">
+
+  <!-- Titre -->
+  <h1 class="text-3xl font-bold mb-6">Profil</h1>
+
+  <!-- Informations sur l'utilisateur -->
+  <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Informations sur l'utilisateur</h2>
+    <p class="text-lg"><strong>Nom :</strong> <%= @user.name %></p>
+    <p class="text-lg"><strong>Email :</strong> <%= @user.email %></p>
+  </div>
+
+  <!-- Commentaires actuels -->
+  <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Commentaires actuels</h2>
+    <% if @current_comments.any? %>
+      <ul class="list-disc pl-4">
+        <% @current_comments.each do |comment| %>
+          <li class="text-lg">
+            <%= link_to comment.description, club_path(comment.club) %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-lg">Aucun commentaire actuel.</p>
+    <% end %>
+  </div>
+
+
+  <!-- Clubs modifiés -->
+  <div class="mb-8">
+    <h2 class="text-xl font-semibold mb-2">Clubs modifiés</h2>
+    <% if @edited_clubs.any? %>
+      <ul class="list-disc pl-4">
+        <% @edited_clubs.each do |edit| %>
+          <li class="text-lg"><%= link_to edit.name, club_path(edit) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-lg">Aucun club modifié.</p>
+    <% end %>
+  </div>
+
+  <!-- Clubs créés -->
+  <div>
+    <h2 class="text-xl font-semibold mb-2">Clubs créés</h2>
+    <% if @created_clubs.any? %>
+      <ul class="list-disc pl-4">
+        <% @created_clubs.each do |club| %>
+          <li class="text-lg"><%= link_to club.name, club_path(club) %></li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-lg">Aucun club créé.</p>
+    <% end %>
+  </div>
+
+</div>
