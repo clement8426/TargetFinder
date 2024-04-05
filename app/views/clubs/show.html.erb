@@ -73,13 +73,14 @@
                 style="top: 2.5rem;"
               >
                 <% if user_signed_in? %>
-                  <%= link_to "Modifier ce club", edit_club_path(@club), class: "block px-4 py-2 hover:bg-gray-100 rounded-t-lg" %>
+                  <%= link_to "Modifier ce club", edit_club_path(@club), class: "block px-4 py-2 text-center hover:bg-gray-100 rounded-t-lg" %>
                 <% else %>
-                  <%= link_to 'Modifier ce club', user_session_path, class: "block px-4 py-2 hover:bg-gray-100" %>
+                  <%= link_to 'Modifier ce club', user_session_path, class: "block px-4 py-2 text-center hover:bg-gray-100" %>
                 <% end %>
                 <% if current_user == @club.creator %>
-                  <%= link_to "Supprimer ce club", club_path(@club), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },class: "block px-4 py-2 hover:bg-red-300 rounded-b-lg" %>
-
+                  <%= form_with(method: :delete, url: club_path(@club), class: "delete-alertbox d-none", data: { controller: "delete-confirmation" }) do |form| %>
+                    <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-b-lg" %>
+                  <% end %>
                 <% end %>
               </div>
             </div>

@@ -12,12 +12,14 @@
  *
  *= require_tree .
  *= require_self
+ *= require sweetalert
  */
 
 @import "font-awesome";
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
 @import "carousel";
 @import "stars";
+
 
 
 
@@ -64,8 +66,6 @@
   }
 
 }
-
-
 
 
 @media (max-width: 767px) {

@@ -15,3 +15,4 @@ pin "@mapbox/mapbox-sdk/services/geocoding", to: "https://ga.jspm.io/npm:@mapbox
 pin "@mapbox/parse-mapbox-token", to: "https://ga.jspm.io/npm:@mapbox/parse-mapbox-token@0.2.0/index.js"
 pin "@stimulus-components/dropdown", to: "https://ga.jspm.io/npm:@stimulus-components/dropdown@3.0.0/dist/stimulus-dropdown.mjs"
 pin "stimulus-use", to: "https://ga.jspm.io/npm:stimulus-use@0.52.2/dist/index.js"
+pin "sweetalert2", to: "https://ga.jspm.io/npm:sweetalert2@11.10.7/dist/sweetalert2.all.js"
