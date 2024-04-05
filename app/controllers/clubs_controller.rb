@@ -76,11 +76,17 @@ class ClubsController < ApplicationController
 
   # DELETE /clubs/1 or /clubs/1.json
   def destroy
-    @club.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to clubs_url, notice: "Le club a été supprimé avec succès." }
-      format.json { head :no_content }
+    @club = Club.find(params[:id])
+    if @club.destroy
+      respond_to do |format|
+        format.html { redirect_to clubs_url, notice: "Le club a été supprimé avec succès." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to clubs_url, alert: "Erreur lors de la suppression du club." }
+        format.json { render json: @club.errors, status: :unprocessable_entity }
+      end
     end
   end
 

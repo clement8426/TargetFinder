@@ -80,3 +80,5 @@ gem "geocoder"
 gem "dotenv-rails"
 
 gem "cloudinary"
+
+gem 'rails-ujs'

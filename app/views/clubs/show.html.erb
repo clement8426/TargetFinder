@@ -72,8 +72,14 @@
                 data-transition-leave-to="opacity-0 scale-95"
                 style="top: 2.5rem;"
               >
-                <%= link_to "Modifier ce club", edit_club_path(@club), class: "block px-4 py-2 hover:bg-gray-100" %>
-                <%= button_to "Supprimer ce club", club_path(@club), method: :delete, class: "block px-4 py-2 hover:bg-gray-100" %>
+                <% if user_signed_in? %>
+                  <%= link_to "Modifier ce club", edit_club_path(@club), class: "block px-4 py-2 hover:bg-gray-100 rounded-t-lg" %>
+                <% else %>
+                  <%= link_to 'Modifier ce club', user_session_path, class: "block px-4 py-2 hover:bg-gray-100" %>
+                <% end %>
+                <% if current_user == @club.creator %>
+                  <%= button_to "Supprimer ce club", club_path(@club), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce club ?" }, class: "block px-4 py-2 hover:bg-red-300 w-full text-left rounded-b-lg" %>
+                <% end %>
               </div>
             </div>
           </div>
