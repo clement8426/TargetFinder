@@ -78,7 +78,8 @@
                   <%= link_to 'Modifier ce club', user_session_path, class: "block px-4 py-2 hover:bg-gray-100" %>
                 <% end %>
                 <% if current_user == @club.creator %>
-                  <%= button_to "Supprimer ce club", club_path(@club), method: :delete, data: { confirm: "Êtes-vous sûr de vouloir supprimer ce club ?" }, class: "block px-4 py-2 hover:bg-red-300 w-full text-left rounded-b-lg" %>
+                  <%= link_to "Supprimer ce club", club_path(@club), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },class: "block px-4 py-2 hover:bg-red-300 rounded-b-lg" %>
+
                 <% end %>
               </div>
             </div>
