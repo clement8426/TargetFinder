@@ -90,6 +90,7 @@
       </div>
 
       <p class="mt-2 text-gray-600 text-base"><%= @club.address %></p>
+      <a href="<%= "https://www.google.com/maps/search/?api=1&query=#{@club.latitude},#{@club.longitude}" %>" class="block text-blue-500 mb-2" target="_blank">Voir sur Google Maps</a>
       <div class="bg-white shadow-md rounded-md p-6 mb-8">
         <p class="text-gray-600 text-base"><%= @club.description %></p>
       </div>
@@ -101,17 +102,17 @@
         <% if user_signed_in? %>
           <%= form_with(model: [@club, @club.comments.build], url: club_comments_path(@club), method: :post) do |form| %>
             <div class="field">
-              <%= form.label :description, class: "block mb-2 text-sm font-medium text-gray-900" %>
+              <%= form.label :description, class: "block my-2 text-sm font-medium text-gray-900" %>
               <%= form.text_area :description, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5", rows: 4, required: true %>
             </div>
 
             <div class="field">
-              <%= form.label :photo, class: "block mb-2 text-sm font-medium text-gray-900" %>
+              <%= form.label :photo, class: "block my-2 text-sm font-medium text-gray-900" %>
               <%= form.file_field :photo, class: "bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" %>
             </div>
 
             <div class="field">
-              <%= form.label :note, class: "block mb-2 text-sm font-medium text-gray-900" %>
+              <%= form.label :note, class: "block my-2 text-sm font-medium text-gray-900" %>
               <div class="flex items-center">
                 <% (1..5).each do |i| %>
                   <%= form.radio_button :note, i, class: "rating-star", id: "note_#{i}" %>

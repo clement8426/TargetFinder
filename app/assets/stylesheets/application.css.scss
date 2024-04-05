@@ -17,8 +17,7 @@
 
 @import "font-awesome";
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
-@import "carousel";
-@import "stars";
+@import "components/index";
 
 
 
@@ -30,26 +29,6 @@
 
 .sidebar-visible {
   left: 0;
-}
-
-.mapboxgl-popup {
-  width: 200px;
-}
-
-.mapboxgl-popup-content {
-
-  background-color: #1F2937;
-
-  text-align: center;
-  font-family: "Open Sans", sans-serif;
-}
-
-
-.mapboxgl-popup-close-button {
-  font-size: 20px;
-  color: #fff;
-  right: 5px;
-  top: -1px;
 }
 
 
