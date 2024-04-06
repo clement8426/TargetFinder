@@ -10,21 +10,28 @@
     <p class="text-lg"><strong>Email :</strong> <%= @user.email %></p>
   </div>
 
-  <!-- Commentaires actuels -->
-  <div class="mb-8">
+  <!-- Affichage des commentaires -->
+  <div class="mb-8" data-controller="delete-confirmation">
     <h2 class="text-xl font-semibold mb-2">Commentaires actuels</h2>
     <% if @current_comments.any? %>
       <ul class="list-disc pl-4">
         <% @current_comments.each do |comment| %>
-          <li class="text-lg">
-            <%= link_to comment.description, club_path(comment.club) %>
-          </li>
+        <li class="text-lg flex items-center">
+          <%= link_to comment.description, club_path(comment.club), class: "hover:bg-gray-300" %>
+          <% if current_user == comment.user %>
+            <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
+              <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
+            <% end %>
+          <% end %>
+        </li>
+
         <% end %>
       </ul>
     <% else %>
       <p class="text-lg">Aucun commentaire actuel.</p>
     <% end %>
   </div>
+
 
 
   <!-- Clubs modifiés -->

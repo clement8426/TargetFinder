@@ -20,9 +20,10 @@ class CommentsController < ApplicationController
     @comment.destroy
 
     respond_to do |format|
-      format.html { redirect_to @comment.club, notice: "Commentaire supprimé avec succès." }
+      format.html { redirect_to profile_path, notice: "Commentaire supprimé avec succès." }
     end
   end
+
 
   private
 
