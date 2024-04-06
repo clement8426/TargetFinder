@@ -1,65 +1,66 @@
-<div class="container mx-auto px-4 py-8">
+<div class="flex container mx-auto px-4 py-8 h-screen">
 
   <!-- Titre -->
-  <h1 class="text-3xl font-bold mb-6">Profil</h1>
 
   <!-- Informations sur l'utilisateur -->
-  <div class="mb-8">
+  <div class="mb-8 mr-4 bg-white shadow-md rounded-md p-6  w-3/6 h-72">
+  <h1 class="text-3xl font-bold mb-6">Profil</h1>
     <h2 class="text-xl font-semibold mb-2">Informations sur l'utilisateur</h2>
     <p class="text-lg"><strong>Nom :</strong> <%= @user.name %></p>
     <p class="text-lg"><strong>Email :</strong> <%= @user.email %></p>
+    <p class="text-lg"><strong>Commentaires :</strong> <%= @current_comments.count %></p>
+    <p class="text-lg"><strong>Editer :</strong> <%= @edited_clubs.count %></p>
+    <p class="text-lg"><strong>Créé :</strong> <%= @created_clubs.count %></p>
   </div>
 
-  <!-- Affichage des commentaires -->
-  <div class="mb-8" data-controller="delete-confirmation">
-    <h2 class="text-xl font-semibold mb-2">Commentaires actuels</h2>
-    <% if @current_comments.any? %>
-      <ul class="list-disc pl-4">
-        <% @current_comments.each do |comment| %>
-        <li class="text-lg flex items-center">
-          <%= link_to comment.description, club_path(comment.club), class: "hover:bg-gray-300" %>
-          <% if current_user == comment.user %>
-            <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
-              <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
+  <div class="bg-white shadow-md rounded-md p-6 mb-8 w-3/6">
+    <!-- Affichage des commentaires -->
+    <div class="mb-8 bg-white shadow-md rounded-md p-6 " data-controller="delete-confirmation">
+      <h2 class="text-xl font-semibold mb-2">Commentaires actuels</h2>
+      <% if @current_comments.any? %>
+        <ul class="list-disc pl-4">
+          <% @current_comments.each do |comment| %>
+          <li class="text-lg flex items-center">
+            <%= link_to comment.description, club_path(comment.club), class: "hover:bg-gray-300" %>
+            <% if current_user == comment.user %>
+              <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
+                <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
+              <% end %>
             <% end %>
+          </li>
           <% end %>
-        </li>
+        </ul>
+      <% else %>
+        <p class="text-lg">Aucun commentaire actuel.</p>
+      <% end %>
+    </div>
 
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="text-lg">Aucun commentaire actuel.</p>
-    <% end %>
+    <!-- Clubs modifiés -->
+    <div class="mb-8 bg-white shadow-md rounded-md p-6 ">
+      <h2 class="text-xl font-semibold mb-2">Clubs modifiés</h2>
+      <% if @edited_clubs.any? %>
+        <ul class="list-disc pl-4">
+          <% @edited_clubs.each do |edit| %>
+            <li class="text-lg"><%= link_to edit.name, club_path(edit) %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-lg">Aucun club modifié.</p>
+      <% end %>
+    </div>
+
+    <!-- Clubs créés -->
+    <div class="bg-white shadow-md rounded-md p-6 " >
+      <h2 class="text-xl font-semibold mb-2">Clubs créés</h2>
+      <% if @created_clubs.any? %>
+        <ul class="list-disc pl-4">
+          <% @created_clubs.each do |club| %>
+            <li class="text-lg"><%= link_to club.name, club_path(club) %></li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="text-lg">Aucun club créé.</p>
+      <% end %>
+    </div>
   </div>
-
-
-
-  <!-- Clubs modifiés -->
-  <div class="mb-8">
-    <h2 class="text-xl font-semibold mb-2">Clubs modifiés</h2>
-    <% if @edited_clubs.any? %>
-      <ul class="list-disc pl-4">
-        <% @edited_clubs.each do |edit| %>
-          <li class="text-lg"><%= link_to edit.name, club_path(edit) %></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="text-lg">Aucun club modifié.</p>
-    <% end %>
-  </div>
-
-  <!-- Clubs créés -->
-  <div>
-    <h2 class="text-xl font-semibold mb-2">Clubs créés</h2>
-    <% if @created_clubs.any? %>
-      <ul class="list-disc pl-4">
-        <% @created_clubs.each do |club| %>
-          <li class="text-lg"><%= link_to club.name, club_path(club) %></li>
-        <% end %>
-      </ul>
-    <% else %>
-      <p class="text-lg">Aucun club créé.</p>
-    <% end %>
-  </div>
-
 </div>
