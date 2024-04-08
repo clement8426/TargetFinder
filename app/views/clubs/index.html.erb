@@ -1,4 +1,4 @@
-<div class="bg-white shadow-md rounded-md overflow-hidden lg:w-8/12	 mx-auto mt-16 ">
+<div class="w-4/5 shadow-md rounded-md overflow-hidden mx-auto mt-16 ">
   <div class="bg-gray-100 py-2 px-4">
     <h2 class="text-xl font-semibold text-gray-800">Tous les clubs</h2>
   </div>
@@ -17,6 +17,18 @@
           <h3 class="text-lg font-medium text-gray-800"><%= club.name %></h3>
           <p class="text-gray-600 text-base"><%= club.address %></p>
           <%= link_to "Voir ce club", club, class: "rounded-lg p-2 bg-gray-100 inline-block font-medium" %>
+        </div>
+        <div>
+          <% if club.comments.any? %>
+            <p class="ml-2 flex items-center">
+              <%= club.average_rating.round(1) %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" class="icon icon-tabler icons-tabler-filled icon-tabler-star text-yellow-400">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M8.243 7.34l-6.38 .925l-.113 .023a1 1 0 0 0 -.44 1.684l4.622 4.499l-1.09 6.355l-.013 .11a1 1 0 0 0 1.464 .944l5.706 -3l5.693 3l.1 .046a1 1 0 0 0 1.352 -1.1l-1.091 -6.355l4.624 -4.5l.078 -.085a1 1 0 0 0 -.633 -1.62l-6.38 -.926l-2.852 -5.78a1 1 0 0 0 -1.794 0l-2.853 5.78z" />
+              </svg>
+              (<%= club.comments.count %>)
+            </p>
+          <% end %>
         </div>
       </li>
     <% end %>

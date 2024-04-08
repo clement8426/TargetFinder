@@ -21,3 +21,22 @@
   right: 14px;
   top: 7px;
 }
+
+.complete {
+  .mapboxgl-ctrl-geocoder {
+    max-width: none;
+    width: 100%;
+    border: 1px solid lightgrey;
+    box-shadow: none;
+    background-color: transparent;
+  }
+  .mapboxgl-ctrl-geocoder--input{
+    width: 100%;
+    height: 3rem;
+  }
+
+  .mapboxgl-ctrl-geocoder--icon-search{
+    top: 15px;
+  }
+
+}

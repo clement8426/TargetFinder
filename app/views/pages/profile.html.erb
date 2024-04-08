@@ -1,4 +1,4 @@
-<div class="flex container mx-auto px-4 py-8 h-screen">
+<div class="flex container mx-auto px-4 py-8 h-screen" data-controller="delete-confirmation">
 
   <!-- Titre -->
 
@@ -15,13 +15,13 @@
 
   <div class="bg-white shadow-md rounded-md p-6 mb-8 w-3/6">
     <!-- Affichage des commentaires -->
-    <div class="mb-8 bg-white shadow-md rounded-md p-6 " data-controller="delete-confirmation">
+    <div class="mb-8 bg-white shadow-md rounded-md p-6 " >
       <h2 class="text-xl font-semibold mb-2">Commentaires actuels</h2>
       <% if @current_comments.any? %>
         <ul class="list-disc pl-4">
           <% @current_comments.each do |comment| %>
           <li class="text-lg flex items-center">
-            <%= link_to comment.description, club_path(comment.club), class: "hover:bg-gray-300" %>
+            <%= link_to comment.description, club_path(comment.club), class: "text-black hover:text-blue-600 hover:underline" %>
             <% if current_user == comment.user %>
               <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
                 <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
@@ -41,7 +41,7 @@
       <% if @edited_clubs.any? %>
         <ul class="list-disc pl-4">
           <% @edited_clubs.each do |edit| %>
-            <li class="text-lg"><%= link_to edit.name, club_path(edit) %></li>
+            <li class="text-lg flex items-center"><%= link_to edit.name, club_path(edit), class: "text-black hover:text-blue-600 hover:underline" %></li>
           <% end %>
         </ul>
       <% else %>
@@ -55,7 +55,12 @@
       <% if @created_clubs.any? %>
         <ul class="list-disc pl-4">
           <% @created_clubs.each do |club| %>
-            <li class="text-lg"><%= link_to club.name, club_path(club) %></li>
+            <li class="text-lg flex items-center">
+              <%= link_to club.name, club_path(club), class: "text-black hover:text-blue-600 hover:underline" %>
+              <%= form_with(method: :delete, url: club_path(club), class: "delete-alertbox d-none", data: { controller: "delete-confirmation" }) do |form| %>
+                <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       <% else %>

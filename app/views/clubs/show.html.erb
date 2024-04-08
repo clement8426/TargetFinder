@@ -1,5 +1,5 @@
-<div class="mx-auto md:w-2/3 lg:w-2/3 w-full flex" data-controller="club-show" >
-  <div class="mx-auto">
+<div class="mx-auto w-4/5 flex" data-controller="club-show" >
+  <div class="mx-auto w-full">
     <section class="slider-wrapper" data-controller="slider">
       <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
       <button class="slide-arrow" id="slide-arrow-next">&#8250;</button>
@@ -126,8 +126,8 @@
               </div>
             </div>
 
-            <div class="actions">
-              <%= form.submit "Ajouter commentaire", class: "text-black w-full bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
+            <div class="actions mx-auto w-2/5 mt-2 bg-gray-100 rounded hover:bg-gray-300 cursor-pointer">
+              <%= form.submit "Ajouter commentaire", class: "text-black w-full  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
             </div>
           <% end %>
         <% else %>

@@ -1,4 +1,4 @@
-<%= form_with(model: club, class: "contents") do |form| %>
+<%= simple_form_for club, html: { class: "contents" } do |form| %>
   <% if club.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(club.errors.count, "erreur") %> a empêché l'enregistrement de ce club:</h2>
@@ -12,28 +12,27 @@
   <% end %>
 
   <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.input :name, label: "Nom", input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
+  </div>
+
+  <div class="complete shadow rounded-md border border-gray-200 outline-none mt-2 w-full">
+    <%= form.input :address,
+        label: false,
+        input_html: { id: "query_address", data: { address_autocomplete_target: "address", geoloc_target: "address" }, class: "hidden" },
+        wrapper_html: { data: { controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"], geoloc_target: "addressWrapper" },  }
+      %>
+  </div>
+
+
+  <div class="my-5">
+    <%= form.input :description, label: "Description", as: :text, input_html: { rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
 
   <div class="my-5">
-    <%= form.label :address %>
-    <%= form.text_field :address, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+    <%= form.input :photo, label: "Photo", as: :file, input_html: { class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" } %>
   </div>
-
-  <div class="my-5">
-    <%= form.label :description %>
-    <%= form.text_area :description, rows: 4, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="my-5">
-    <%= form.label :photo %>
-    <%= form.file_field :photo, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-
 
   <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.button :submit, "Enregistrer", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

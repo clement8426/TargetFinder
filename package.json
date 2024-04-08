@@ -2,6 +2,10 @@
   "dependencies": {
     "@sweetalert2/theme-borderless": "^5.0.16",
     "flowbite": "^2.3.0",
-    "sweetalert2": "^11.10.7"
+    "suggestions": "^1.7.1",
+    "sweetalert2": "^11.10.7",
+    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
+    "axios": "^1.6.2"
+
   }
 }
