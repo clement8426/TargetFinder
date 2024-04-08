@@ -8,7 +8,7 @@ class Club < ApplicationRecord
   after_validation :geocode, if: :will_save_change_to_address?
 
   belongs_to :creator, class_name: "User", foreign_key: "creator_id", optional: true
-  has_many :club_edits
+  has_many :club_edits, dependent: :destroy
   has_many :editors, through: :club_edits, source: :user
   has_many :comments, dependent: :destroy
 
