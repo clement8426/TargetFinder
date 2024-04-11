@@ -1,4 +1,4 @@
-<div class="mx-auto w-4/5 flex" data-controller="club-show" >
+<div class="mx-auto  flex" data-controller="club-show" >
   <div class="mx-auto w-full">
     <section class="slider-wrapper" data-controller="slider">
       <button class="slide-arrow" id="slide-arrow-prev">&#8249;</button>
@@ -77,7 +77,7 @@
                 <% else %>
                   <%= link_to 'Modifier ce club', user_session_path, class: "block px-4 py-2 text-center hover:bg-gray-100" %>
                 <% end %>
-                <% if current_user == @club.creator %>
+                <% if user_signed_in? && current_user == @club.creator %>
                   <%= form_with(method: :delete, url: club_path(@club), class: "delete-alertbox d-none", data: { controller: "delete-confirmation" }) do |form| %>
                     <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-b-lg" %>
                   <% end %>
@@ -127,7 +127,7 @@
             </div>
 
             <div class="actions mx-auto w-2/5 mt-2 bg-gray-100 rounded hover:bg-gray-300 cursor-pointer">
-              <%= form.submit "Ajouter commentaire", class: "text-black w-full  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
+              <%= form.submit "Commenter", class: "text-black w-full  focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center" %>
             </div>
           <% end %>
         <% else %>
@@ -164,7 +164,7 @@
         <% end %>
       </div>
       <div class="mt-4 mb-8">
-        <h3 class="text-lg font-medium text-gray-800">Credits :</h3>
+        <h3 class="text-lg font-medium text-gray-800">Personne ayant modifié ou créé le club :</h3>
         <h4 class="font-medium text-gray-800">Créateur : <%= @club.creator.present? ? @club.creator.name : "Inconnu" %></h4>
         <p class="text-gray-600 text-base opacity-75">Éditeurs :</p>
         <ul class="list-disc ml-4 text-gray-600 opacity-75">
