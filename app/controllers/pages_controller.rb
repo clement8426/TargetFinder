@@ -11,6 +11,7 @@ class PagesController < ApplicationController
         marker_html: render_to_string(partial: "marker")
       }
     end
+
     @clubs_with_region = Club.all.map do |club|
       location = Geocoder.search([club.latitude, club.longitude]).first
       if location.present? && location.data["address"].present?
