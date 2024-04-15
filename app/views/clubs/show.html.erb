@@ -21,7 +21,7 @@
     </section>
 
 
-    <div class="py-4 px-6 div">
+    <div data-controller="down-page" class="py-4 px-6 div">
       <div class="flex items-center justify-between relative">
         <div class="flex items-center">
           <% if @club.photo.attached? %>
@@ -96,9 +96,9 @@
       </div>
 
 
-      <button data-action="click->club-show#toggleCommentForm" class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium flex justify-center">Ajouter un commentaire</button>
+      <button data-action="click->club-show#toggleCommentForm click->down-page#scrollDown" class="mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium flex justify-center">Ajouter un commentaire</button>
 
-      <div id="comment-form-container" class="hidden">
+      <div id="comment-form-container" class="hidden" data-down-page-target="commentFormContainer">
         <% if user_signed_in? %>
           <%= form_with(model: [@club, @club.comments.build], url: club_comments_path(@club), method: :post) do |form| %>
             <div class="field">
