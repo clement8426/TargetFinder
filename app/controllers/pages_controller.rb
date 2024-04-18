@@ -31,6 +31,6 @@ class PagesController < ApplicationController
     @current_comments = @user.comments
     @created_clubs = Club.where(creator_id: @user.id)
     @edited_clubs = ClubEdit.where(user_id: @user.id).map(&:club)
-
   end
+
 end
