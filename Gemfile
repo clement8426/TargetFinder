@@ -85,5 +85,4 @@ gem 'rails-ujs'
 
 gem 'sweetalert-rails'
 
-
 gem 'simple_form'
