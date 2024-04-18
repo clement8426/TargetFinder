@@ -24,6 +24,21 @@ class PagesController < ApplicationController
     # Trie les clubs par code de région
     @sorted_clubs = @clubs_with_region.sort_by { |club_info| club_info[:region_code] }
 
+    # Générer des marqueurs pour les régions
+    @region_markers = @sorted_clubs.group_by { |club_info| club_info[:region_code] }.map do |region_code, clubs|
+      # Calculer le centre de la région
+      region_center = [
+        clubs.map { |club_info| club_info[:club].longitude }.sum / clubs.length,
+        clubs.map { |club_info| club_info[:club].latitude }.sum / clubs.length
+      ]
+
+      # Créer un marqueur pour la région
+      {
+        region_code: region_code,
+        center: region_center,
+        club_count: clubs.length
+      }
+    end
   end
 
   def profile
@@ -32,5 +47,4 @@ class PagesController < ApplicationController
     @created_clubs = Club.where(creator_id: @user.id)
     @edited_clubs = ClubEdit.where(user_id: @user.id).map(&:club)
   end
-
 end
