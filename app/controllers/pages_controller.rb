@@ -32,11 +32,18 @@ class PagesController < ApplicationController
         clubs.map { |club_info| club_info[:club].latitude }.sum / clubs.length
       ]
 
-      # Créer un marqueur pour la région
+      # Créer un marqueur pour la région avec HTML personnalisé
+      marker_html = render_to_string(partial: "marker", locals: { region_code: region_code })
+
+      # Créer les informations HTML personnalisées pour la région
+      info_window_html = render_to_string(partial: "info_region_window", locals: { region_code: region_code, club_count: clubs.length })
+
       {
         region_code: region_code,
         center: region_center,
-        club_count: clubs.length
+        club_count: clubs.length,
+        marker_html: marker_html,
+        info_window_html: info_window_html
       }
     end
   end

@@ -69,9 +69,16 @@ export default class extends Controller {
     if (zoom < 7 && this.markersRegionValue) {
       this.clearMarkers();
       this.markersRegionValue.forEach(regionMarker => {
+        // Créez un élément DOM pour le marqueur avec le HTML personnalisé
         const markerElement = document.createElement('div');
-        markerElement.innerHTML = `<span>Région ${regionMarker.region_code}</span><br/><span>Nombre de clubs : ${regionMarker.club_count}</span>`;
-        const popup = new mapboxgl.Popup().setHTML(markerElement.innerHTML);
+        markerElement.innerHTML = regionMarker.marker_html;
+
+        // Créez une popup avec le contenu HTML personnalisé pour les informations de la région
+        const popupContent = document.createElement('div');
+        popupContent.innerHTML = regionMarker.info_window_html;
+        const popup = new mapboxgl.Popup().setDOMContent(popupContent);
+
+        // Ajoutez le marqueur personnalisé à la carte
         new mapboxgl.Marker({ element: markerElement })
           .setLngLat(regionMarker.center)
           .setPopup(popup)
