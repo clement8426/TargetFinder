@@ -17,7 +17,8 @@ export default class extends Controller {
       container: this.element,
       style: "mapbox://styles/mapbox/streets-v10",
       center: [2.35, 48.85],
-      zoom: 5,
+      zoom: this.isMobileDevice() ? 3 : 5, // Adjust zoom level for mobile devices
+
       maxBounds: [
         [-10.0, 38.0],
         [15.0, 54.0]
@@ -74,5 +75,9 @@ export default class extends Controller {
   clearMarkers() {
     // Supprimez tous les marqueurs de la carte
     document.querySelectorAll('.mapboxgl-marker').forEach(marker => marker.remove());
+  }
+
+  isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   }
 }

@@ -16,6 +16,8 @@
 }
 
 .my-map-container .mapboxgl-popup-close-button {
+  position: fixed;
+
   font-size: 30px;
   color: #fff;
   right: 14px;

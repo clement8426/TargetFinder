@@ -1,10 +1,10 @@
-
-<div
-  class="block rounded-lg bg-gray-800 p-6 text-surface shadow-secondary-1 dark:bg-surface-dark dark:text-white">
+<div class="block rounded-lg bg-gray-800 pt-0 p-6 text-surface shadow-secondary-1 text-white">
+  <%= link_to club_path(club) do%>
   <h5 class="mb-2 text-xl font-medium leading-tight"><%= club.name %></h5>
   <p class="mb-4 text-base">
     <%= club.address %>
   </p>
+  <% end %>
   <%= link_to "https://www.google.com/maps/search/?api=1&query=#{club.latitude},#{club.longitude}", target: "_blank" do%>
   <button
     type="button"
