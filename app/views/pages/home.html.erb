@@ -1,13 +1,31 @@
-<div class="my-map-container">
+<div class="my-map-container relative">
   <div style="width: 100%; height: 100dvh;"
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-markers-region-value="<%= @region_markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+      <div id="dropdown" class="absolute z-50 top-2 left-1/2 transform -translate-x-1/2">
+        <div data-controller="dropdown" class="relative">
+          <button type="button" data-action="dropdown#toggle click@window->dropdown#hide" class="bg-gray-800 flex items-center rounded shadow-md p-1">
+            <span>
+              <p class="px-2 flex w-full justify-between text-gray-300 cursor-pointer items-center">test bouton</p>
+            </span>
+          </button>
+
+          <div
+            data-dropdown-target="menu"
+            class="h-40 w-80 absolute z-50 left-1/2 transform -translate-x-1/2 hidden bg-white divide-y divide-gray-100 rounded-lg shadow right-0 flex justify-center items-center"
+            data-transition-enter-from="opacity-0 scale-95"
+            data-transition-enter-to="opacity-100 scale-100"
+            data-transition-leave-from="opacity-100 scale-100"
+            data-transition-leave-to="opacity-0 scale-95"
+            style="top: 2.5rem;"
+          >
+            <div class="complete shadow rounded-md border border-gray-200 outline-none mt-2 w-full">
+
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 </div>
-
-
-
-
-<div id="clubsList" style=" height: 100vh"><%= render 'list_club' %></div>
