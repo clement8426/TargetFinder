@@ -1,10 +1,9 @@
 <div class="flex container mx-auto px-4 py-8 h-screen" data-controller="delete-confirmation">
-
   <!-- Titre -->
 
   <!-- Informations sur l'utilisateur -->
   <div class="mb-8 mr-4 bg-white shadow-md rounded-md p-6  w-3/6 h-72">
-  <h1 class="text-3xl font-bold mb-6">Profil</h1>
+    <h1 class="text-3xl font-bold mb-6">Profil</h1>
     <h2 class="text-xl font-semibold mb-2">Informations sur l'utilisateur</h2>
     <p class="text-lg"><strong>Nom :</strong> <%= @user.name %></p>
     <p class="text-lg"><strong>Email :</strong> <%= @user.email %></p>
@@ -15,19 +14,19 @@
 
   <div class="bg-white shadow-md rounded-md p-6 mb-8 w-3/6">
     <!-- Affichage des commentaires -->
-    <div class="mb-8 bg-white shadow-md rounded-md p-6 " >
+    <div class="mb-8 bg-white shadow-md rounded-md p-6">
       <h2 class="text-xl font-semibold mb-2">Commentaires actuels</h2>
       <% if @current_comments.any? %>
         <ul class="list-disc pl-4">
           <% @current_comments.each do |comment| %>
-          <li class="text-lg flex items-center">
-            <%= link_to comment.description, club_path(comment.club), class: "text-black hover:text-blue-600 hover:underline" %>
-            <% if current_user == comment.user %>
-              <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
-                <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
+            <li class="text-lg flex items-center">
+              <%= link_to comment.description, club_path(comment.club), class: "text-black hover:text-blue-600 hover:underline" %>
+              <% if current_user == comment.user %>
+                <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
+                  <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
+                <% end %>
               <% end %>
-            <% end %>
-          </li>
+            </li>
           <% end %>
         </ul>
       <% else %>
@@ -36,7 +35,7 @@
     </div>
 
     <!-- Clubs modifiés -->
-    <div class="mb-8 bg-white shadow-md rounded-md p-6 ">
+    <div class="mb-8 bg-white shadow-md rounded-md p-6">
       <h2 class="text-xl font-semibold mb-2">Clubs modifiés</h2>
       <% if @edited_clubs.any? %>
         <ul class="list-disc pl-4">
@@ -50,7 +49,7 @@
     </div>
 
     <!-- Clubs créés -->
-    <div class="bg-white shadow-md rounded-md p-6 " >
+    <div class="bg-white shadow-md rounded-md p-6">
       <h2 class="text-xl font-semibold mb-2">Clubs créés</h2>
       <% if @created_clubs.any? %>
         <ul class="list-disc pl-4">
@@ -70,240 +69,163 @@
   </div>
 </div>
 
-
-<main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
-<div class="container mx-auto px-6 py-8">
-
+<main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" data-controller="delete-confirmation">
+  <div class="container mx-auto px-6 py-8">
     <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
 
     <div class="mt-4">
-        <div class="flex flex-wrap -mx-6">
-            <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                    <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
-                        <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="text-white icon icon-tabler icons-tabler-outline icon-tabler-message-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></svg>
-                    </div>
-
-                    <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700"><%= @current_comments.count %></h4>
-                        <div class="text-gray-500">Commentaires</div>
-                    </div>
-                </div>
+      <div class="flex flex-wrap -mx-6">
+        <div class="w-full px-6 sm:w-1/2 xl:w-1/3">
+          <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+            <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-message-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></svg>
             </div>
-
-            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                    <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
-                      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="text-white icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
-                    </div>
-
-                    <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700"><%= @edited_clubs.count %></h4>
-                        <div class="text-gray-500">Clubs edtité</div>
-                    </div>
-                </div>
+            <div class="mx-5">
+              <h4 class="text-2xl font-semibold text-gray-700"><%= @current_comments.count %></h4>
+              <div class="text-gray-500">Commentaires</div>
             </div>
-
-            <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
-                <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
-                    <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
-                      <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class=" text-white icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
-                    </div>
-
-                    <div class="mx-5">
-                        <h4 class="text-2xl font-semibold text-gray-700"> <%= @created_clubs.count %></h4>
-                        <div class="text-gray-500">Clubs créé</div>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 sm:mt-0">
+          <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+            <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+            </div>
+            <div class="mx-5">
+              <h4 class="text-2xl font-semibold text-gray-700"><%= @edited_clubs.count %></h4>
+              <div class="text-gray-500">Clubs édités</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full mt-6 px-6 sm:w-1/2 xl:w-1/3 xl:mt-0">
+          <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+            <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
+            </div>
+            <div class="mx-5">
+              <h4 class="text-2xl font-semibold text-gray-700"><%= @created_clubs.count %></h4>
+              <div class="text-gray-500">Clubs créés</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="mt-8">
-
     </div>
 
     <div class="flex flex-col mt-8">
       <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
         <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+          <% if @current_comments.any? %>
           <table class="min-w-full">
             <thead>
-                <tr>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Name</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Title</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Status</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Role</th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                </tr>
-            </thead>
-
-            <tbody class="bg-white">
               <tr>
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div class="flex items-center">
-                          <div class="flex-shrink-0 h-10 w-10">
-                              <img class="h-10 w-10 rounded-full"
-                                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                  alt="">
-                          </div>
-
-                          <div class="ml-4">
-                              <div class="text-sm leading-5 font-medium text-gray-900">John Doe
-                              </div>
-                              <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                          </div>
-                      </div>
-                  </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-                      <div class="text-sm leading-5 text-gray-500">Web dev</div>
-                  </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <span
-                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                  </td>
-
-                  <td
-                      class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                      Owner</td>
-
-                  <td
-                      class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                  </td>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Commentaires</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Club</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Note</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
               </tr>
-            </tbody>
+            </thead>
+            <% @current_comments.each do |comment| %>
+              <tbody class="bg-white">
+                <tr>
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                      <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-message-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></svg>
+                      </div>
+                      <div class="ml-4">
+                      <div class="text-gray-600 text-base w-40" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <%= link_to comment.description, club_path(comment.club), class: "text-sm leading-5 font-medium text-gray-900 hover:text-blue-600 hover:underline" %>
+                      </div>
+                        <div class="text-sm leading-5 text-gray-500"><%= comment.created_at.strftime("%d-%m-%y") %></div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="text-sm leading-5 text-gray-900"><%= comment.club.name %></div>
+                    <div class="text-sm leading-5 text-gray-500 w-3/4">
+                      <p class="text-gray-600 text-base w-20 sm:w-full" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <%= comment.club.address %>
+                      </p>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
+                    <%= comment.note %>/5
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                    <% if current_user == comment.user %>
+                      <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
+                        <%= form.submit "Delete", class: "text-indigo-600 hover:text-indigo-900" %>
+                      <% end %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            <% end %>
           </table>
+          <% end %>
         </div>
         <div class="mt-4 align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+        <% if @created_clubs.any? %>
           <table class="min-w-full">
             <thead>
-                <tr>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Name</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Title</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Status</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Role</th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                </tr>
-            </thead>
-
-            <tbody class="bg-white">
               <tr>
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div class="flex items-center">
-                          <div class="flex-shrink-0 h-10 w-10">
-                              <img class="h-10 w-10 rounded-full"
-                                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                  alt="">
-                          </div>
-
-                          <div class="ml-4">
-                              <div class="text-sm leading-5 font-medium text-gray-900">John Doe
-                              </div>
-                              <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                          </div>
-                      </div>
-                  </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-                      <div class="text-sm leading-5 text-gray-500">Web dev</div>
-                  </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <span
-                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                  </td>
-
-                  <td
-                      class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                      Owner</td>
-
-                  <td
-                      class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
-                  </td>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
               </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="mt-4 align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-          <table class="min-w-full">
-            <thead>
-                <tr>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Name</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Title</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Status</th>
-                    <th
-                        class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
-                        Role</th>
-                    <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-                </tr>
             </thead>
-
-            <tbody class="bg-white">
-              <tr>
+            <% @created_clubs.each do |club| %>
+              <tbody class="bg-white">
+                <tr>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div class="flex items-center">
-                          <div class="flex-shrink-0 h-10 w-10">
-                              <img class="h-10 w-10 rounded-full"
-                                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                  alt="">
-                          </div>
-
-                          <div class="ml-4">
-                              <div class="text-sm leading-5 font-medium text-gray-900">John Doe
-                              </div>
-                              <div class="text-sm leading-5 text-gray-500">john@example.com</div>
-                          </div>
+                    <div class="flex items-center">
+                      <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                       </div>
+                      <div class="ml-4">
+                        <div class="text-sm leading-5 font-medium text-gray-900">
+                          <div class="text-gray-600 text-base w-40" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <%= link_to club.name, club_path(club), class: "text-black hover:text-blue-600 hover:underline" %>
+                          </div>
+                        </div>
+                        <div class="text-sm leading-5 text-gray-500">
+                          <div class="text-sm leading-5 text-gray-500"><%= club.created_at.strftime("%d-%m-%y") %></div>
+                        </div>
+                      </div>
+                    </div>
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <div class="text-sm leading-5 text-gray-900">Software Engineer</div>
-                      <div class="text-sm leading-5 text-gray-500">Web dev</div>
+                    <div class="text-sm leading-5 text-gray-900" >
+                      <p class="text-gray-600 text-base  w-3/4" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <%= club.address %>
+                      </p>                    </div>
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                      <span
-                          class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
                   </td>
 
-                  <td
-                      class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">
-                      Owner</td>
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">Owner</td>
 
-                  <td
-                      class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                      <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                   </td>
-              </tr>
-            </tbody>
+                </tr>
+              </tbody>
+            <% end %>
           </table>
+          <% end %>
         </div>
       </div>
     </div>
