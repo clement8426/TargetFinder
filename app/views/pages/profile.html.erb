@@ -76,9 +76,9 @@
             <% @current_comments.each do |comment| %>
               <tbody class="bg-white">
                 <tr>
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                  <td class="pr-6 lg:px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
-                      <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+                      <div class="hidden lg:block p-3 rounded-full bg-indigo-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-message-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3 -3.9c-2.324 -3.437 -1.426 -7.872 2.1 -10.374c3.526 -2.501 8.59 -2.296 11.845 .48c3.255 2.777 3.695 7.266 1.029 10.501c-2.666 3.235 -7.615 4.215 -11.574 2.293l-4.7 1" /></svg>
                       </div>
                       <div class="ml-4">
@@ -121,8 +121,8 @@
           <table class="min-w-full">
             <thead>
               <tr>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Club</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Addresse</th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
               </tr>
@@ -130,9 +130,9 @@
             <% @created_clubs.each do |club| %>
               <tbody class="bg-white">
                 <tr>
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                  <td class="pr-6 lg:px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
-                      <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
+                      <div class="hidden lg:block p-3 rounded-full bg-pink-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
                       </div>
                       <div class="ml-4">
@@ -149,8 +149,8 @@
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-900 w-3/4" >
-                      <p class="text-gray-600 text-base  " style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <div class="text-sm leading-5 text-gray-500 w-3/4">
+                      <p class="text-gray-600 text-base w-20 sm:w-full" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                         <%= club.address %>
                       </p>
                     </div>
@@ -176,17 +176,17 @@
           <table class="min-w-full">
             <thead>
               <tr>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Club</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Addresse</th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
               </tr>
             </thead>
             <% @edited_clubs.each do |club| %>
               <tbody class="bg-white">
                 <tr>
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                  <td class="pr-6 lg:px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                     <div class="flex items-center">
-                      <div class="p-3 rounded-full bg-orange-600 bg-opacity-75">
+                      <div class="hidden lg:block p-3 rounded-full bg-orange-600 bg-opacity-75">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                       </div>
                       <div class="ml-4">
@@ -203,8 +203,8 @@
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-900 w-3/4" >
-                      <p class="text-gray-600 text-base  " style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <div class="text-sm leading-5 text-gray-500 w-3/4">
+                      <p class="text-gray-600 text-base w-20 sm:w-full" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                         <%= club.address %>
                       </p>
                     </div>
