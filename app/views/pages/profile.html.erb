@@ -1,77 +1,21 @@
-<div class="flex container mx-auto px-4 py-8 h-screen" data-controller="delete-confirmation">
-  <!-- Titre -->
-
-  <!-- Informations sur l'utilisateur -->
-  <div class="mb-8 mr-4 bg-white shadow-md rounded-md p-6  w-3/6 h-72">
-    <h1 class="text-3xl font-bold mb-6">Profil</h1>
-    <h2 class="text-xl font-semibold mb-2">Informations sur l'utilisateur</h2>
-    <p class="text-lg"><strong>Nom :</strong> <%= @user.name %></p>
-    <p class="text-lg"><strong>Email :</strong> <%= @user.email %></p>
-    <p class="text-lg"><strong>Commentaires :</strong> <%= @current_comments.count %></p>
-    <p class="text-lg"><strong>Editer :</strong> <%= @edited_clubs.count %></p>
-    <p class="text-lg"><strong>Créé :</strong> <%= @created_clubs.count %></p>
-  </div>
-
-  <div class="bg-white shadow-md rounded-md p-6 mb-8 w-3/6">
-    <!-- Affichage des commentaires -->
-    <div class="mb-8 bg-white shadow-md rounded-md p-6">
-      <h2 class="text-xl font-semibold mb-2">Commentaires actuels</h2>
-      <% if @current_comments.any? %>
-        <ul class="list-disc pl-4">
-          <% @current_comments.each do |comment| %>
-            <li class="text-lg flex items-center">
-              <%= link_to comment.description, club_path(comment.club), class: "text-black hover:text-blue-600 hover:underline" %>
-              <% if current_user == comment.user %>
-                <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
-                  <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
-                <% end %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="text-lg">Aucun commentaire actuel.</p>
-      <% end %>
-    </div>
-
-    <!-- Clubs modifiés -->
-    <div class="mb-8 bg-white shadow-md rounded-md p-6">
-      <h2 class="text-xl font-semibold mb-2">Clubs modifiés</h2>
-      <% if @edited_clubs.any? %>
-        <ul class="list-disc pl-4">
-          <% @edited_clubs.each do |edit| %>
-            <li class="text-lg flex items-center"><%= link_to edit.name, club_path(edit), class: "text-black hover:text-blue-600 hover:underline" %></li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="text-lg">Aucun club modifié.</p>
-      <% end %>
-    </div>
-
-    <!-- Clubs créés -->
-    <div class="bg-white shadow-md rounded-md p-6">
-      <h2 class="text-xl font-semibold mb-2">Clubs créés</h2>
-      <% if @created_clubs.any? %>
-        <ul class="list-disc pl-4">
-          <% @created_clubs.each do |club| %>
-            <li class="text-lg flex items-center">
-              <%= link_to club.name, club_path(club), class: "text-black hover:text-blue-600 hover:underline" %>
-              <%= form_with(method: :delete, url: club_path(club), class: "delete-alertbox d-none", data: { controller: "delete-confirmation" }) do |form| %>
-                <%= form.submit "Delete", class: "block w-full px-4 py-2 hover:bg-red-300 rounded-lg" %>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      <% else %>
-        <p class="text-lg">Aucun club créé.</p>
-      <% end %>
-    </div>
-  </div>
-</div>
 
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" data-controller="delete-confirmation">
   <div class="container mx-auto px-6 py-8">
-    <h3 class="text-gray-700 text-3xl font-medium">Dashboard</h3>
+    <div class="flex justify-center items-center ">
+      <h3 class="text-gray-700 text-3xl font-medium">Profile</h3>
+      <div class="w-full pl-6 ">
+          <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
+            <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
+              <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="text-white icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
+            </div>
+            <div class="ml-2 flex w-full justify-between	">
+                <h4 class="text-2xl font-semibold "><%= @user.name %></h4>
+                <h4 class="text-2xl font-semibold "><%= @user.email %></h4>
+                <h4 class="text-2xl font-semibold text-gray-700"><%= @user.created_at.strftime("%d-%m-%y") %></h4>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <div class="mt-4">
       <div class="flex flex-wrap -mx-6">
@@ -162,7 +106,7 @@
                   <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
                     <% if current_user == comment.user %>
                       <%= form_with(model: [comment.club, comment], method: :delete, url: club_comment_path(comment.club, comment), class: "delete-alertbox d-none") do |form| %>
-                        <%= form.submit "Delete", class: "text-indigo-600 hover:text-indigo-900" %>
+                        <%= form.submit "Delete", class: "text-red-600 hover:text-red-900" %>
                       <% end %>
                     <% end %>
                   </td>
@@ -179,12 +123,65 @@
               <tr>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
                 <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
               </tr>
             </thead>
             <% @created_clubs.each do |club| %>
+              <tbody class="bg-white">
+                <tr>
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                      <div class="p-3 rounded-full bg-pink-600 bg-opacity-75">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-news"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 6h3a1 1 0 0 1 1 1v11a2 2 0 0 1 -4 0v-13a1 1 0 0 0 -1 -1h-10a1 1 0 0 0 -1 1v12a3 3 0 0 0 3 3h11" /><path d="M8 8l4 0" /><path d="M8 12l4 0" /><path d="M8 16l4 0" /></svg>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm leading-5 font-medium text-gray-900">
+                          <div class="text-gray-600 text-base w-40" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <%= link_to club.name, club_path(club), class: "text-black hover:text-blue-600 hover:underline" %>
+                          </div>
+                        </div>
+                        <div class="text-sm leading-5 text-gray-500">
+                          <div class="text-sm leading-5 text-gray-500"><%= club.created_at.strftime("%d-%m-%y") %></div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="text-sm leading-5 text-gray-900 w-3/4" >
+                      <p class="text-gray-600 text-base  " style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <%= club.address %>
+                      </p>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                    <%= form_with(method: :delete, url: club_path(club), class: "delete-alertbox d-none", data: { controller: "delete-confirmation" }) do |form| %>
+                      <%= form.submit "Delete", class: "text-red-600 hover:text-red-900" %>
+                    <% end %>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                    <%= link_to "Modifier", edit_club_path(club), class: "text-indigo-600 hover:text-indigo-900" %>
+                  </td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+          <% end %>
+        </div>
+        <div class="mt-4 align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+        <% if @edited_clubs.any? %>
+          <table class="min-w-full">
+            <thead>
+              <tr>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Title</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+              </tr>
+            </thead>
+            <% @edited_clubs.each do |club| %>
               <tbody class="bg-white">
                 <tr>
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -206,20 +203,15 @@
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-900" >
-                      <p class="text-gray-600 text-base  w-3/4" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                    <div class="text-sm leading-5 text-gray-900 w-3/4" >
+                      <p class="text-gray-600 text-base  " style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                         <%= club.address %>
-                      </p>                    </div>
+                      </p>
+                    </div>
                   </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                  </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500">Owner</td>
 
                   <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                    <%= link_to "Modifier", edit_club_path(club), class: "text-indigo-600 hover:text-indigo-900" %>
                   </td>
                 </tr>
               </tbody>
@@ -227,6 +219,7 @@
           </table>
           <% end %>
         </div>
+
       </div>
     </div>
   </div>
