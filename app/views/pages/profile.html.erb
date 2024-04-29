@@ -1,14 +1,14 @@
 
 <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200" data-controller="delete-confirmation">
   <div class="container mx-auto px-6 py-8">
-    <div class="flex justify-center items-center ">
+    <div class="sm:contents lg:flex justify-center items-center text-center	">
       <h3 class="text-gray-700 text-3xl font-medium">Profile</h3>
-      <div class="w-full pl-6 ">
+      <div class="w-full lg:pl-6 ">
           <div class="flex items-center px-5 py-6 shadow-sm rounded-md bg-white">
             <div class="p-3 rounded-full bg-indigo-600 bg-opacity-75">
               <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="text-white icon icon-tabler icons-tabler-outline icon-tabler-user-circle"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 10m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /><path d="M6.168 18.849a4 4 0 0 1 3.832 -2.849h4a4 4 0 0 1 3.834 2.855" /></svg>
             </div>
-            <div class="ml-2 flex w-full justify-between	">
+            <div class="lg:ml-2 sm:contents lg:flex w-full justify-between text-center		">
                 <h4 class="text-2xl font-semibold "><%= @user.name %></h4>
                 <h4 class="text-2xl font-semibold "><%= @user.email %></h4>
                 <h4 class="text-2xl font-semibold text-gray-700"><%= @user.created_at.strftime("%d-%m-%y") %></h4>
