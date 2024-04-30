@@ -262,6 +262,54 @@
           <% end %>
         </div>
         <div class="mt-4 align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
+        <% if @edited_clubs.any? %>
+          <table class="min-w-full">
+            <thead>
+              <tr>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Club</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Addresse</th>
+                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+              </tr>
+            </thead>
+            <% @edited_clubs.each do |club| %>
+              <tbody class="bg-white">
+                <tr>
+                  <td class="pr-6 lg:px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="flex items-center">
+                      <div class="hidden lg:block p-3 rounded-full bg-orange-600 bg-opacity-75">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm leading-5 font-medium text-gray-900">
+                          <div class="text-gray-600 text-base w-40" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                            <%= link_to club.name, club_path(club), class: "text-black hover:text-blue-600 hover:underline" %>
+                          </div>
+                        </div>
+                        <div class="text-sm leading-5 text-gray-500">
+                          <div class="text-sm leading-5 text-gray-500"><%= club.created_at.strftime("%d-%m-%y") %></div>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+                    <div class="text-sm leading-5 text-gray-500 w-3/4">
+                      <p class="text-gray-600 text-base w-20 sm:w-full" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <%= club.address %>
+                      </p>
+                    </div>
+                  </td>
+
+                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
+                    <%= link_to "Modifier", edit_club_path(club), class: "text-indigo-600 hover:text-indigo-900" %>
+                  </td>
+                </tr>
+              </tbody>
+            <% end %>
+          </table>
+          <% end %>
+        </div>
+        <div class="mt-4 align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
         <% if @created_clubs.any? %>
           <table class="min-w-full">
             <thead>
@@ -305,54 +353,6 @@
                     <%= form_with(method: :delete, url: club_path(club), class: "delete-alertbox d-none", data: { controller: "delete-confirmation" }) do |form| %>
                       <%= form.submit "Delete", class: "text-red-600 hover:text-red-900" %>
                     <% end %>
-                  </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
-                    <%= link_to "Modifier", edit_club_path(club), class: "text-indigo-600 hover:text-indigo-900" %>
-                  </td>
-                </tr>
-              </tbody>
-            <% end %>
-          </table>
-          <% end %>
-        </div>
-        <div class="mt-4 align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-        <% if @edited_clubs.any? %>
-          <table class="min-w-full">
-            <thead>
-              <tr>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Club</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">Addresse</th>
-                <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
-              </tr>
-            </thead>
-            <% @edited_clubs.each do |club| %>
-              <tbody class="bg-white">
-                <tr>
-                  <td class="pr-6 lg:px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <div class="flex items-center">
-                      <div class="hidden lg:block p-3 rounded-full bg-orange-600 bg-opacity-75">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-white icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
-                      </div>
-                      <div class="ml-4">
-                        <div class="text-sm leading-5 font-medium text-gray-900">
-                          <div class="text-gray-600 text-base w-40" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                            <%= link_to club.name, club_path(club), class: "text-black hover:text-blue-600 hover:underline" %>
-                          </div>
-                        </div>
-                        <div class="text-sm leading-5 text-gray-500">
-                          <div class="text-sm leading-5 text-gray-500"><%= club.created_at.strftime("%d-%m-%y") %></div>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-
-                  <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                    <div class="text-sm leading-5 text-gray-500 w-3/4">
-                      <p class="text-gray-600 text-base w-20 sm:w-full" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-                        <%= club.address %>
-                      </p>
-                    </div>
                   </td>
 
                   <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200 text-sm leading-5 font-medium">
