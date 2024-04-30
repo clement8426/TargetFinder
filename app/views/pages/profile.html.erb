@@ -1,5 +1,5 @@
 
-<main class="h-dvh flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 " data-controller="delete-confirmation">
+<main class="main-content h-dvh flex-1 overflow-x-hidden overflow-y-auto bg-gray-200 " data-controller="delete-confirmation">
 
   <div class="container mx-auto px-6 py-8">
     <div class="sm:contents lg:flex justify-center items-center text-center	">
@@ -39,7 +39,7 @@
 
                 <div
                   data-dropdown-target="menu"
-                  class="blurdiv absolute bg-white overflow-scroll max-h-96 p-6 w-11/12 absolute z-50 left-1/2 transform -translate-x-1/2 hidden divide-y divide-gray-100 rounded-lg shadow-inner right-0 flex justify-center items-center "
+                  class=" absolute bg-white overflow-scroll max-h-96 p-6 w-11/12 absolute z-50 left-1/2 transform -translate-x-1/2 hidden divide-y divide-gray-100 rounded-lg shadow-inner right-0 flex justify-center items-center "
                   data-transition-enter-from="opacity-0 scale-95"
                   data-transition-enter-to="opacity-100 scale-100"
                   data-transition-leave-from="opacity-100 scale-100"
@@ -369,23 +369,3 @@
     </div>
   </div>
 </main>
-
-
-<script>
-  console.log("blurrrrrr");
-  document.addEventListener("DOMContentLoaded", function(event) {
-    event.preventDefault();
-    const blurdiv = document.querySelectorAll(".blurdiv");
-    const mainElement = document.querySelector("main");
-    console.log(mainElement);
-
-    blurdiv.forEach(function(element) {
-      if (element.classList.contains("hidden")) {
-        console.log("hidden");
-      } else {
-        console.log("not hidden");
-        mainElement.classList.add("blur-elements");
-      }
-    });
-  });
-</script>

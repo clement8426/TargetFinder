@@ -54,6 +54,10 @@
 }
 
 
-.blur-elements {
-  filter: blur(2px);
+.blur-background {
+  backdrop-filter: blur(1rem);
+}
+
+.blur-background-ignore {
+  backdrop-filter: none; /* Annule le flou pour la div spécifique */
 }
