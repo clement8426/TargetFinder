@@ -79,12 +79,12 @@ class ClubsController < ApplicationController
     @club = Club.find(params[:id])
     if @club.destroy
       respond_to do |format|
-        format.html { redirect_to clubs_url, notice: "Le club a été supprimé avec succès." }
+        format.html { redirect_to profile_path, notice: "Le club a été supprimé avec succès." }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to clubs_url, alert: "Erreur lors de la suppression du club." }
+        format.html { redirect_to profile_path, alert: "Erreur lors de la suppression du club." }
         format.json { render json: @club.errors, status: :unprocessable_entity }
       end
     end
@@ -100,4 +100,6 @@ class ClubsController < ApplicationController
     def club_params
       params.require(:club).permit(:name, :city, :description, :address, :photo)
     end
+
+
 end

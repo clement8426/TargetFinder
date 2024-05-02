@@ -10,7 +10,7 @@ export default class extends Controller {
   connect() {
     this.geocoder = new MapboxGeocoder({
       accessToken: this.apiKeyValue,
-      countries: "FR", // Spécifie que seuls les résultats en France seront retournés
+      countries: "fr", // Spécifie que seuls les résultats en France seront retournés
 
       types: "country,region,place,postcode,locality,neighborhood,address",
     });
