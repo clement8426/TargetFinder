@@ -1,0 +1,1 @@
+window.SpeechToTextConfig = { lang: 'en-US' };
